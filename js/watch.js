@@ -216,7 +216,7 @@ $('.phantomcigar').click(function() {
     animtime = 0;
     variable_cd();
 
-	$('.phantomcigar').effect("pulsate");
+	$('.phantomcigar').pulse({opacity: 0}, {duration : 100, pulses : 5});
 	setTimeout(function() {$('.phantomcigar').css({'display': 'none'});}, 500);
 	
     setTimeout(function() {
