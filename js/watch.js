@@ -177,7 +177,9 @@ var variable_cd = function() {
   variable_timer_id = setTimeout(variable_cd, variable_interval);
 };
 
-$('.phantomcigar').hover(function() {
+function onHover()
+{
+    $('#cigar').attr('src', 'img/phantomcigar_a.jpg');
 	
 	var file = 'sounds/select.mp3';
 	
@@ -190,7 +192,12 @@ $('.phantomcigar').hover(function() {
       });
       audioobj = audio5js;
     })();
-})
+}
+
+function offHover()
+{
+    $('#cigar').attr('src', 'img/phantomcigar.jpg');
+}
 
 $('.phantomcigar').click(function() {
 
