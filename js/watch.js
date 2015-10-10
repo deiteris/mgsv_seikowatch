@@ -216,10 +216,9 @@ $('.phantomcigar').click(function() {
     animtime = 0;
     variable_cd();
 
-    $('.phantomcigar').css({
-      'visibility': 'hidden'
-    });
-
+	$('.phantomcigar').effect("pulsate");
+	setTimeout(function() {$('.phantomcigar').css({'display': 'none'});}, 500);
+	
     setTimeout(function() {
 
       cigartime = 0;
@@ -252,7 +251,7 @@ $('.phantomcigar').click(function() {
 
       setTimeout(function() {
         $('.phantomcigar').css({
-          'visibility': ''
+          'display': 'block'
         });
       }, 5000);
 
