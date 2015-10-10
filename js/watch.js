@@ -141,9 +141,6 @@ var downer = function() {
   } else if (todaydate < 0 && cigartime <= 0) {
     init_flag = false;
     getdate_flag = true;
-    $('.phantomcigar').css({
-      'display': 'none'
-    });
   }
   nowcount++;
 };
