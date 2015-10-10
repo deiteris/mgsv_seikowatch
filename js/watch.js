@@ -152,8 +152,7 @@ var variable_cd = function() {
   variable_timer_id = setTimeout(variable_cd, variable_interval);
 };
 
-function onHover()
-{
+function onHover() {
   $('#cigar').attr('src', 'img/phantomcigar_a.jpg');
 
   var file = 'sounds/select.mp3';
@@ -169,8 +168,7 @@ function onHover()
   })();
 }
 
-function offHover()
-{
+function offHover() {
   $('#cigar').attr('src', 'img/phantomcigar.jpg');
 }
 
