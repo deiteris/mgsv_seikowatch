@@ -1,5 +1,5 @@
 /* Global variables declarations */
-var todaydate = new Date();
+var thetime = new Date();
 var cigartime = 0;
 var init_flag = false;
 var animtime = 0;
@@ -18,38 +18,30 @@ function getContent() {
 }
 
 function getTime() {
-  var basetimes = [60, 60, 24];
-  var int_time = new Date() * 1;
-  var cur_time = Math.round(int_time / 1000);
+  var cur_time = Math.round(new Date() * 1 / 1000);
   var time = cur_time + cigartime + (60 * 60 * 3);
 
-  /* DANGER: Dark magic here! */
-  if (time <= 0) time = 0;
+  /*
+   * [0] - Seconds
+   * [1] - Minutes
+   * [2] - Hours
+   */
+  var basetime = [60, 60, 24];
+  var array = [];
 
-  var rets = [];
-
-  rets[0] = time % basetimes[0];
-  if (rets[0] <= 0) rets[0] = 0;
-
-  time -= rets[0];
+  array[0] = time % basetime[0]; /* This should be minutes */
+  time -= array[0];
 
   var buff = 1;
   for (var ii = 1; ii <= 3; ii++) {
-    buff *= basetimes[ii - 1];
-
+    buff *= basetime[ii - 1];
     var tmp = time / buff;
-    if (basetimes[ii]) {
-      tmp = tmp % basetimes[ii];
-    }
-
-    if (tmp <= 0) tmp = 0;
-
-    rets[ii] = tmp;
-    time -= rets[ii] * buff;
+    tmp = tmp % basetime[ii - 1];
+    array[ii] = tmp;
+    time -= array[ii] * buff;
   }
 
-  return rets;
-  /* Dark magic end */
+  return array;
 }
 
 function draw() {
@@ -59,8 +51,8 @@ function draw() {
   for (var ii = 0; ii < 4; ii++) {
     var num2 = Math.floor(time[ii] / 10);
     var num1 = time[ii] % 10;
-    var days_hi = Math.floor(todaydate.getDate() / 10);
-    var days_lo = Math.floor(todaydate.getDate() % 10);
+    var days2 = Math.floor(thetime.getDate() / 10);
+    var days1 = Math.floor(thetime.getDate() % 10);
     var second = {'w': 100, 'h': 100};
     var nums = {'w': 35, 'h': 25};
     var numl = {'w': 45, 'h': 30};
@@ -82,8 +74,8 @@ function draw() {
         $('.hour1').css('background-position', (-numl.w * num1) + 'px 0px');
         break;
       case 3:
-        $('.day2').css('background-position', (-numl.w * days_hi) + 'px 0px');
-        $('.day1').css('background-position', (-numl.w * days_lo) + 'px 0px');
+        $('.day2').css('background-position', (-numl.w * days2) + 'px 0px');
+        $('.day1').css('background-position', (-numl.w * days1) + 'px 0px');
         break;
     }
   }
@@ -158,7 +150,6 @@ $('.phantomcigar').click(function() {
   setTimeout(function() {$('.phantomcigar').css({'display': 'none'});}, 500);
 
   setTimeout(function() {
-
     cigartime = 0;
 
     if (cigar_timer !== null) {
