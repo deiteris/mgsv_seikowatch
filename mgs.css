@@ -24,30 +24,26 @@ body {
     transform: translateY(-50%);
 }
 
-.container .timerarea {
+.container .dialarea {
     width: 170px;
     overflow: visible;
     background: url(img/base_set.png) no-repeat;
 }
 
-.container .timerarea .timerttl {
-    position: relative;
-}
-
-.container .timerarea .timer {
+.container .dialarea .dial {
     width: 170px;
     height: 170px;
     overflow: hidden;
 }
 
-.timerbg {
+.dialbg {
     width: 170px;
     height: 170px;
     background: url(img/base-.png);
     display: none;
 }
 
-.timer .clock {
+.dial .clock {
     position: absolute;
     width: 100px;
     height: 100px;
@@ -57,73 +53,69 @@ body {
     background: url(img/second.png);
 }
 
-.timer .number {
-    position: relative;
-}
-
-.timer .nums {
+.dial .nums {
     position: absolute;
     width: 35px;
     height: 25px;
     overflow: hidden;
 }
 
-.timer .nums.sec2 {
+.dial .nums.sec2 {
     left: 104px;
     top: 119px;
     background: url(img/num_s.png);
 }
 
-.timer .nums.sec1 {
+.dial .nums.sec1 {
     left: 122px;
     top: 119px;
     background: url(img/num_s.png);
 }
 
-.timer .numl {
+.dial .numl {
     position: absolute;
     width: 45px;
     height: 30px;
     overflow: hidden;
 }
 
-.timer .numl.min2 {
+.dial .numl.min2 {
     left: 50px;
     top: 112px;
     background: url(img/num_l.png);
 }
 
-.timer .numl.min1 {
+.dial .numl.min1 {
     left: 73px;
     top: 112px;
     background: url(img/num_l.png);
 }
 
-.timer .numl.hour2 {
+.dial .numl.hour2 {
     left: -9px;
     top: 112px;
     background: url(img/num_l.png);
 }
 
-.timer .numl.hour1 {
+.dial .numl.hour1 {
     left: 14px;
     top: 112px;
     background: url(img/num_l.png);
 }
 
-.timer .numl.day2 {
+.dial .numl.day2 {
     left: 91px;
     top: 68px;
     background: url(img/num_l.png);
 }
 
-.timer .numl.day1 {
+.dial .numl.day1 {
     left: 114px;
     top: 68px;
     background: url(img/num_l.png);
 }
 
-.timer .colon {
+.dial .colon {
     position: absolute;
     left: 63px;
     top: 111px;
