@@ -1,4 +1,4 @@
-  /* Global variables declarations */
+/* Global variables declarations */
 var todaydate = new Date();
 var cigartime = 0;
 var init_flag = false;
@@ -8,13 +8,13 @@ var cigar_timer = null;
 var old_time = 0;
 var audioobj = null;
 
-  /* Code start */
+/* Code start */
 function getContent() {
-    if (!init_flag) {
-      init_flag = true;
-      countdown();
-      $('.dialarea').css({'visibility': 'visible'});
-    }
+  if (!init_flag) {
+    init_flag = true;
+    countdown();
+    $('.dialarea').css({'visibility': 'visible'});
+  }
 }
 
 function getTime() {
@@ -98,10 +98,10 @@ function countdown() {
   setInterval(counter, 1000);
 }
 
-  /* Clock start */
+/* Clock start */
 getContent();
 
-  /* Calculate cigartime */
+/* Calculate cigartime */
 function getCigartime() {
 
   if (old_time === 0) old_time = new Date() * 1;
@@ -119,7 +119,7 @@ function getCigartime() {
   cigar_timer = setTimeout(getCigartime, 1);
 }
 
-  /* Phantom cigar functionality */
+/* Phantom cigar functionality */
 function onHover() {
   $('#cigar').attr('src', 'img/phantomcigar_a.jpg');
 
@@ -140,43 +140,43 @@ function offHover() {
 
 $('.phantomcigar').click(function() {
 
-    (function initAudio() {
-      var audio5js = new Audio5js({
-        ready: function() {
-          this.load('sounds/cigar.mp3');
-          this.play();
-        }
-      });
-      audioobj = audio5js;
-    })();
+  (function initAudio() {
+    var audio5js = new Audio5js({
+      ready: function() {
+        this.load('sounds/cigar.mp3');
+        this.play();
+      }
+    });
+    audioobj = audio5js;
+  })();
 
-    old_time = 0;
-    animtime = 0;
-    getCigartime();
+  old_time = 0;
+  animtime = 0;
+  getCigartime();
 
-    $('.phantomcigar').pulse({opacity: 0}, {duration : 100, pulses : 5});
-    setTimeout(function() {$('.phantomcigar').css({'display': 'none'});}, 500);
+  $('.phantomcigar').pulse({opacity: 0}, {duration : 100, pulses : 5});
+  setTimeout(function() {$('.phantomcigar').css({'display': 'none'});}, 500);
+
+  setTimeout(function() {
+
+    cigartime = 0;
+
+    if (cigar_timer !== null) {
+      clearTimeout(cigar_timer);
+      cigar_timer = null;
+    }
+
+    countdown();
+
+    $('.dial').css({'display': 'none'});
+    $('.dialbg').css({'display': 'block'});
 
     setTimeout(function() {
+      $('.dial').css({'display': 'block'});
+      $('.dialbg').css({'display': 'none'});
+    }, 2000);
 
-      cigartime = 0;
+    setTimeout(function() {$('.phantomcigar').css({'display': 'block'});}, 5000);
 
-      if (cigar_timer !== null) {
-        clearTimeout(cigar_timer);
-        cigar_timer = null;
-      }
-
-      countdown();
-
-      $('.dial').css({'display': 'none'});
-      $('.dialbg').css({'display': 'block'});
-
-      setTimeout(function() {
-        $('.dial').css({'display': 'block'});
-        $('.dialbg').css({'display': 'none'});
-      }, 2000);
-
-      setTimeout(function() {$('.phantomcigar').css({'display': 'block'});}, 5000);
-
-    }, max_animtime);
+  }, max_animtime);
 });
