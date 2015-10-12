@@ -104,8 +104,6 @@ getContent();
   /* Calculate cigartime */
 function getCigartime() {
 
-  var interval = 1;
-
   if (old_time === 0) old_time = new Date() * 1;
 
   var now_time = new Date() * 1;
@@ -118,7 +116,7 @@ function getCigartime() {
 
   cigartime = Math.floor(per * 5000);
   draw();
-  cigar_timer = setTimeout(getCigartime, interval);
+  cigar_timer = setTimeout(getCigartime, 1);
 }
 
   /* Phantom cigar functionality */
