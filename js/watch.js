@@ -1,62 +1,43 @@
+  /* Global variables declarations */
 var todaydate = new Date();
-
 var cigartime = 0;
-var reverse_flag = false;
-var reloadnum = 30;
-var nowcount = 0;
-var tid = null;
 var init_flag = false;
-var getdate_flag = true;
+var animtime = 0;
+var max_animtime = 9000;
+var cigar_timer = null;
+var old_time = 0;
+var audioobj = null;
 
-var second = {
-  'w': 100,
-  'h': 100
-};
-var nums = {
-  'w': 35,
-  'h': 25
-};
-var numl = {
-  'w': 45,
-  'h': 30
-};
-
-function get_content() {
-
-  if (getdate_flag) {
-    getdate_flag = false;
-
-    nowcount = 0;
-
+  /* Code start */
+function getContent() {
     if (!init_flag) {
       init_flag = true;
       countdown();
-      $('.timerarea').css({'visibility': 'visible'});
+      $('.dialarea').css({'visibility': 'visible'});
     }
-  }
 }
 
-var basetimes = [60, 60, 24];
-
-function getshowtimes() {
+function getTime() {
+  var basetimes = [60, 60, 24];
   var int_time = new Date() * 1;
   var cur_time = Math.round(int_time / 1000);
-  var showtime = cur_time + cigartime + (60 * 60 * 3);
+  var time = cur_time + cigartime + (60 * 60 * 3);
 
-  if (showtime <= 0) showtime = 0;
+  /* DANGER: Dark magic here! */
+  if (time <= 0) time = 0;
 
   var rets = [];
 
-  rets[0] = showtime % basetimes[0];
+  rets[0] = time % basetimes[0];
   if (rets[0] <= 0) rets[0] = 0;
 
-  showtime -= rets[0];
+  time -= rets[0];
 
   var buff = 1;
   for (var ii = 1; ii <= 3; ii++) {
     buff *= basetimes[ii - 1];
 
-    var tmp = showtime / buff;
+    var tmp = time / buff;
     if (basetimes[ii]) {
       tmp = tmp % basetimes[ii];
     }
@@ -64,21 +45,25 @@ function getshowtimes() {
     if (tmp <= 0) tmp = 0;
 
     rets[ii] = tmp;
-    showtime -= rets[ii] * buff;
+    time -= rets[ii] * buff;
   }
 
   return rets;
+  /* Dark magic end */
 }
 
-var drawer = function() {
+function draw() {
 
-  var showtimes = getshowtimes();
+  var time = getTime();
 
   for (var ii = 0; ii < 4; ii++) {
-    var num2 = Math.floor(showtimes[ii] / 10);
-    var num1 = showtimes[ii] % 10;
+    var num2 = Math.floor(time[ii] / 10);
+    var num1 = time[ii] % 10;
     var days_hi = Math.floor(todaydate.getDate() / 10);
     var days_lo = Math.floor(todaydate.getDate() % 10);
+    var second = {'w': 100, 'h': 100};
+    var nums = {'w': 35, 'h': 25};
+    var numl = {'w': 45, 'h': 30};
 
     switch (ii) {
       case 0:
@@ -102,40 +87,24 @@ var drawer = function() {
         break;
     }
   }
-};
+}
 
-var downer = function() {
+function counter() {
+  draw();
+  getContent();
+}
 
-  drawer();
+function countdown() {
+  setInterval(counter, 1000);
+}
 
-  if (reloadnum == nowcount) {
-    if (!reverse_flag) {
-      getdate_flag = true;
-      get_content();
-    }
-  } else if (todaydate < 0 && cigartime <= 0) {
-    init_flag = false;
-    getdate_flag = true;
-  }
-  nowcount++;
-};
+  /* Clock start */
+getContent();
 
-var countdown = function() {
-  if (tid === null) {
-    tid = setInterval(downer, 1000);
-  }
-};
+  /* Calculate cigartime */
+function getCigartime() {
 
-get_content();
-
-var animtime = 0;
-var max_animtime = 9000;
-
-var variable_interval = 1;
-var variable_timer_id = null;
-var old_time = 0;
-
-var variable_cd = function() {
+  var interval = 1;
 
   if (old_time === 0) old_time = new Date() * 1;
 
@@ -148,19 +117,18 @@ var variable_cd = function() {
   if (1 < per) per = 1;
 
   cigartime = Math.floor(per * 5000);
-  drawer();
-  variable_timer_id = setTimeout(variable_cd, variable_interval);
-};
+  draw();
+  cigar_timer = setTimeout(getCigartime, interval);
+}
 
+  /* Phantom cigar functionality */
 function onHover() {
   $('#cigar').attr('src', 'img/phantomcigar_a.jpg');
-
-  var file = 'sounds/select.mp3';
 
   (function initAudio() {
     var audio5js = new Audio5js({
       ready: function() {
-        this.load(file);
+        this.load('sounds/select.mp3');
         this.play();
       }
     });
@@ -174,24 +142,19 @@ function offHover() {
 
 $('.phantomcigar').click(function() {
 
-  if (!reverse_flag) {
-    var file = 'sounds/cigar.mp3';
-
     (function initAudio() {
       var audio5js = new Audio5js({
         ready: function() {
-          this.load(file);
+          this.load('sounds/cigar.mp3');
           this.play();
         }
       });
       audioobj = audio5js;
     })();
 
-    reverse_flag = true;
-
     old_time = 0;
     animtime = 0;
-    variable_cd();
+    getCigartime();
 
     $('.phantomcigar').pulse({opacity: 0}, {duration : 100, pulses : 5});
     setTimeout(function() {$('.phantomcigar').css({'display': 'none'});}, 500);
@@ -200,26 +163,22 @@ $('.phantomcigar').click(function() {
 
       cigartime = 0;
 
-      if (variable_timer_id !== null) {
-        clearTimeout(variable_timer_id);
-        variable_timer_id = null;
+      if (cigar_timer !== null) {
+        clearTimeout(cigar_timer);
+        cigar_timer = null;
       }
 
-      reverse_flag = false;
-      getdate_flag = true;
-      get_content();
       countdown();
 
-      $('.timer').css({'display': 'none'});
-      $('.timerbg').css({'display': 'block'});
+      $('.dial').css({'display': 'none'});
+      $('.dialbg').css({'display': 'block'});
 
       setTimeout(function() {
-        $('.timer').css({'display': 'block'});
-        $('.timerbg').css({'display': 'none'});
+        $('.dial').css({'display': 'block'});
+        $('.dialbg').css({'display': 'none'});
       }, 2000);
 
       setTimeout(function() {$('.phantomcigar').css({'display': 'block'});}, 5000);
 
     }, max_animtime);
-  }
 });
