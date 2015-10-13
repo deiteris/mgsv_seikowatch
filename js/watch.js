@@ -36,7 +36,7 @@ function getTime() {
   for (var ii = 1; ii <= 3; ii++) {
     buff *= basetime[ii - 1];
     var tmp = time / buff;
-    tmp = tmp % basetime[ii - 1];
+    tmp = tmp % basetime[ii];
     array[ii] = tmp;
     time -= array[ii] * buff;
   }
