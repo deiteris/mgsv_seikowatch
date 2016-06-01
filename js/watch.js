@@ -113,8 +113,6 @@ function getCigartime() {
 
 /* Phantom cigar functionality */
 function onHover() {
-  $('#cigar').attr('src', 'img/phantomcigar_a.jpg');
-
   (function initAudio() {
     var audio5js = new Audio5js({
       ready: function() {
@@ -124,10 +122,6 @@ function onHover() {
     });
     audioobj = audio5js;
   })();
-}
-
-function offHover() {
-  $('#cigar').attr('src', 'img/phantomcigar.jpg');
 }
 
 $('.phantomcigar').click(function() {
