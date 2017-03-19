@@ -1,129 +1,129 @@
-html {
-    background: url(img/bg.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.phantomcigar img:hover {
-    -webkit-filter: brightness(150%);
-}
-
-.container {
-    text-align: center;
-    width: 170px;
-    height: 170px;
-    margin: 0 auto;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.container .dialarea {
-    width: 170px;
-    overflow: visible;
-    background: url(img/base_set.png) no-repeat;
-}
-
-.container .dialarea .dial {
-    width: 170px;
-    height: 170px;
-    overflow: hidden;
-}
-
-.dialbg {
-    width: 170px;
-    height: 170px;
-    background: url(img/base-.png);
-    display: none;
-}
-
-.dial .clock {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    left: 4px;
-    top: 4px;
-    background: url(img/second.png);
-}
-
-.dial .nums {
-    position: absolute;
-    width: 35px;
-    height: 25px;
-    overflow: hidden;
-}
-
-.dial .nums.sec2 {
-    left: 104px;
-    top: 119px;
-    background: url(img/num_s.png);
-}
-
-.dial .nums.sec1 {
-    left: 122px;
-    top: 119px;
-    background: url(img/num_s.png);
-}
-
-.dial .numl {
-    position: absolute;
-    width: 45px;
-    height: 30px;
-    overflow: hidden;
-}
-
-.dial .numl.min2 {
-    left: 50px;
-    top: 112px;
-    background: url(img/num_l.png);
-}
-
-.dial .numl.min1 {
-    left: 73px;
-    top: 112px;
-    background: url(img/num_l.png);
-}
-
-.dial .numl.hour2 {
-    left: -9px;
-    top: 112px;
-    background: url(img/num_l.png);
-}
-
-.dial .numl.hour1 {
-    left: 14px;
-    top: 112px;
-    background: url(img/num_l.png);
-}
-
-.dial .numl.day2 {
-    left: 91px;
-    top: 68px;
-    background: url(img/num_l.png);
-}
-
-.dial .numl.day1 {
-    left: 114px;
-    top: 68px;
-    background: url(img/num_l.png);
-}
-
-.dial .colon {
-    position: absolute;
-    left: 63px;
-    top: 111px;
-    height: 30px;
-    width: 6px;
-    background: url(img/dot.png);
+html {
+    background: url(img/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.phantomcigar img:hover {
+    -webkit-filter: brightness(150%);
+}
+
+.container {
+    text-align: center;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.container .dialarea {
+    width: 170px;
+    overflow: visible;
+    background: url(img/base_set.png) no-repeat;
+}
+
+.container .dialarea .dial {
+    width: 170px;
+    height: 170px;
+    overflow: hidden;
+}
+
+.dialbg {
+    width: 170px;
+    height: 170px;
+    background: url(img/base-.png);
+    display: none;
+}
+
+.dial .clock {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    left: 4px;
+    top: 4px;
+    background: url(img/second.png);
+}
+
+.dial .nums {
+    position: absolute;
+    width: 35px;
+    height: 25px;
+    overflow: hidden;
+}
+
+.dial .nums.sec2 {
+    left: 104px;
+    top: 119px;
+    background: url(img/num_s.png);
+}
+
+.dial .nums.sec1 {
+    left: 122px;
+    top: 119px;
+    background: url(img/num_s.png);
+}
+
+.dial .numl {
+    position: absolute;
+    width: 45px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.dial .numl.min2 {
+    left: 50px;
+    top: 112px;
+    background: url(img/num_l.png);
+}
+
+.dial .numl.min1 {
+    left: 73px;
+    top: 112px;
+    background: url(img/num_l.png);
+}
+
+.dial .numl.hour2 {
+    left: -9px;
+    top: 112px;
+    background: url(img/num_l.png);
+}
+
+.dial .numl.hour1 {
+    left: 14px;
+    top: 112px;
+    background: url(img/num_l.png);
+}
+
+.dial .numl.day2 {
+    left: 91px;
+    top: 68px;
+    background: url(img/num_l.png);
+}
+
+.dial .numl.day1 {
+    left: 114px;
+    top: 68px;
+    background: url(img/num_l.png);
+}
+
+.dial .colon {
+    position: absolute;
+    left: 63px;
+    top: 111px;
+    height: 30px;
+    width: 6px;
+    background: url(img/dot.png);
 }
